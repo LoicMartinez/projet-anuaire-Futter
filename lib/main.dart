@@ -3,7 +3,7 @@ import 'models/class_contact.dart';
 import 'package:get/get.dart';
 
 import 'view/contact_detail_page/contact_detail.dart';
-import 'view/contact_page/contact.dart';
+import 'view/contact_page/widget/contact.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +15,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: "/contact_detail",
+      initialRoute: "/contact",
       getPages: [
-        GetPage(name: "/contact", page: () => const contact()),
+        GetPage(
+            name: "/contact",
+            page: () => const contact(
+                  feuilleContactList: [],
+                )),
         GetPage(name: "/contact_detail", page: () => ContactDetail())
       ],
     );
