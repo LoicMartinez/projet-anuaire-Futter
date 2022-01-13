@@ -1,5 +1,6 @@
-class Equipment {
-  String? name, phone, adress;
+class FeuilleContact {
+  String name, phoneNumber, mail;
 
-  Equipment({required this.name, required this.phone, required this.adress});
+  FeuilleContact(
+      {required this.name, required this.phoneNumber, required this.mail});
 }

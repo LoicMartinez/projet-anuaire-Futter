@@ -1,19 +1,18 @@
-import 'package:projetflutter/view/contact_page/models/feuille_contact.dart';
+import 'package:projetflutter/models/class_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp(const contact(feuilleContactList: [],));
+  runApp(const contact(
+    feuilleContactList: [],
+  ));
 }
 
 // ignore: camel_case_types
 class contact extends StatelessWidget {
   final List<FeuilleContact> feuilleContactList;
-  
-  const contact({
-    Key? key,
-    required this.feuilleContactList
-    }) : super(key: key);
+
+  const contact({Key? key, required this.feuilleContactList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,24 +57,22 @@ class contact extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: () {
-        feuilleContactList.add(FeuilleContact(name: "Ajouté", phoneNumber: "XX1", mail: "x@f.x"));
+        feuilleContactList.add(
+            FeuilleContact(name: "Ajouté", phoneNumber: "XX1", mail: "x@f.x"));
       }),
-
       appBar: AppBar(
           backgroundColor: const Color.fromARGB(223, 230, 237, 245),
           title: const Text('Porjet flutter !!',
-              style: TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold))),
-                  
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
       body: SingleChildScrollView(
         child: Column(
           children: List.generate(
             feuilleContactList.length,
             (index) => Block(
-              name: feuilleContactList[index].name,
-              phoneNumber: feuilleContactList[index].phoneNumber,
-              mail: feuilleContactList[index].mail
-            ),
+                name: feuilleContactList[index].name,
+                phoneNumber: feuilleContactList[index].phoneNumber,
+                mail: feuilleContactList[index].mail),
           ),
         ),
       ),
@@ -87,7 +84,11 @@ class contact extends StatelessWidget {
 class Block extends StatelessWidget {
   String name, phoneNumber, mail;
 
-  Block({Key? key, required this.name, required this.phoneNumber, required this.mail})
+  Block(
+      {Key? key,
+      required this.name,
+      required this.phoneNumber,
+      required this.mail})
       : super(key: key);
 
   @override
@@ -107,11 +108,7 @@ class Block extends StatelessWidget {
                 children: <Widget>[
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Text(name),
-                    Text(phoneNumber),
-                    Text(mail)
-                    ],
+                    children: [Text(name), Text(phoneNumber), Text(mail)],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/class_contact.dart';
+import 'package:projetflutter/models/class_contact.dart';
 import 'package:get/get.dart';
 
 import 'view/contact_detail_page/contact_detail.dart';
@@ -22,7 +22,11 @@ class MyApp extends StatelessWidget {
             page: () => const contact(
                   feuilleContactList: [],
                 )),
-        GetPage(name: "/contact_detail", page: () => ContactDetail())
+        GetPage(
+            name: "/contact_detail",
+            page: () => ContactDetail(
+                  ContactList: [],
+                ))
       ],
     );
   }

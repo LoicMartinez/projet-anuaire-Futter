@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:projetflutter/models/class_contact.dart';
 
 void main() {
-  runApp(ContactDetail());
+  runApp(ContactDetail(
+    ContactList: [],
+  ));
 }
 
 class ContactDetail extends StatelessWidget {
-  ContactDetail({Key? key}) : super(key: key);
+  List<FeuilleContact> ContactList = [];
+  ContactDetail({Key? key, required this.ContactList}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
   @override
