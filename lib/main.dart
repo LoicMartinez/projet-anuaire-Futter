@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projetflutter/models/class_contact.dart';
 import 'package:get/get.dart';
 
-import 'view/contact_detail_page/contact_detail.dart';
+import 'view/contact_detail_page/contactDetail.dart';
 import 'view/contact_page/widget/contact.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: "/contact",
+      initialRoute: "/contact_detail",
       getPages: [
         GetPage(
             name: "/contact",
@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
                 )),
         GetPage(
             name: "/contact_detail",
-            page: () => ContactDetail(
-                  ContactList: [],
+            page: () => contactDetail(
+                  contactList: [],
                 ))
       ],
     );
