@@ -14,7 +14,7 @@ class ContactDetail extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(223, 230, 237, 245),
         title: const Text(
-          'Prenom Nom',
+          'Prénom Nom',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
       ),
@@ -181,7 +181,7 @@ class Coordones extends StatelessWidget {
           const Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Informations",
+                "Information",
                 style: TextStyle(fontWeight: FontWeight.bold),
               )),
           Padding(
