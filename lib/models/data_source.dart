@@ -6,46 +6,6 @@ class DataSource {
         firstName: "Jean-Paul",
         lastName: "Larue",
         personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net")
   ];
 }

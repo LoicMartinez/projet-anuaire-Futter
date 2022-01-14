@@ -41,7 +41,8 @@ class Contact extends StatelessWidget {
                     (_contactList[index].lastName ?? "Non renseigné"),
                 phoneNumber:
                     _contactList[index].personalPhoneNumber ?? "Non renseigné",
-                mail: _contactList[index].mail ?? "Non renseigné"),
+                mail: _contactList[index].mail ?? "Non renseigné",
+                index: index),
           ),
         ),
       ),
@@ -52,12 +53,14 @@ class Contact extends StatelessWidget {
 // ignore: must_be_immutable
 class Block extends StatelessWidget {
   String name, phoneNumber, mail;
+  int index;
 
   Block(
       {Key? key,
       required this.name,
       required this.phoneNumber,
-      required this.mail})
+      required this.mail,
+      required this.index})
       : super(key: key);
 
   @override
@@ -118,7 +121,10 @@ class Block extends StatelessWidget {
                       TextButton(
                         child: const Icon(Icons.more_horiz_outlined,
                             color: Color.fromARGB(255, 0, 0, 0), size: 36.0),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed("/contact_detail",
+                              arguments: {'index': index});
+                        },
                       ),
                       const SizedBox(width: 8),
                     ],
