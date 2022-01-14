@@ -13,54 +13,6 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  final List<FeuilleContact> feuilleContactList = <FeuilleContact>[
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net"),
-    FeuilleContact(
-        firstName: "Jean-Paul",
-        lastName: "Larue",
-        personalPhoneNumber: "06 71 59 57 60",
-        mail: "jp.larue@laposte.net")
-  ];
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -68,13 +20,11 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: "/contact",
-          page: () => contact(
-            feuilleContactList: feuilleContactList,
-          ),
+          page: () => Contact(),
         ),
         GetPage(
           name: "/contact_detail",
-          page: () => ContactDetail(contactList: []),
+          page: () => ContactDetail(),
         ),
       ],
     );

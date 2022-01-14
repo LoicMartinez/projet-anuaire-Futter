@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projetflutter/models/class_contact.dart';
 import 'package:get/get.dart';
+import 'package:projetflutter/models/data_source.dart';
 
 class ContactDetail extends StatelessWidget {
-  List<FeuilleContact> contactList;
   int? index;
-  ContactDetail({Key? key, required this.contactList, this.index})
-      : super(key: key);
+  ContactDetail({Key? key, this.index}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
   dynamic info = {
@@ -22,7 +21,8 @@ class ContactDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    contactList = Get.arguments['feuilleContactList'];
+    List<FeuilleContact> _contactList = DataSource.feuilleContactList;
+    _contactList[0].firstName;
     index = Get.arguments['index'];
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +46,7 @@ class ContactDetail extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: information(
                         contact: index != null
-                            ? contactList[index!]
+                            ? _contactList[index!]
                             : FeuilleContact(),
                         info: info),
                   ),
@@ -65,7 +65,7 @@ class ContactDetail extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
                       if (index != null) {
-                        contactList[index!].lastName = "lastName";
+                        _contactList[index!].lastName = "lastName";
                       } else {
                         FeuilleContact newContact = FeuilleContact(
                             lastName: info["lastName"],
@@ -76,9 +76,9 @@ class ContactDetail extends StatelessWidget {
                             proPhoneNumber: info["proPhoneNumber"],
                             fixPhoneNumber: info["fixPhoneNumber"],
                             mail: info["mail"]);
-                        contactList.add(newContact);
+                        DataSource.feuilleContactList.add(newContact);
                       }
-                      Get.toNamed("/contact", arguments: contactList);
+                      Get.toNamed("/contact");
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),

@@ -1,57 +1,47 @@
 import 'package:projetflutter/models/class_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projetflutter/models/data_source.dart';
 
-void main() {
-  runApp(contact(
-    feuilleContactList: [],
-  ));
-}
-
-// ignore: camel_case_types, must_be_immutable
-class contact extends StatelessWidget {
-  List<FeuilleContact> feuilleContactList;
-
-  contact({Key? key, required this.feuilleContactList}) : super(key: key);
+class Contact extends StatelessWidget {
+  Contact({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<FeuilleContact> _contactList = DataSource.feuilleContactList;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          feuilleContactList.add(
-            FeuilleContact(lastName: "Ajouté", personalPhoneNumber: "XX1", mail: "x@f.x")
-          );
+          Get.toNamed("/contact_detail", arguments: {'index': null});
         },
-        backgroundColor: const Color.fromARGB(255, 195, 207, 217),
-        child: const Icon(Icons.add_rounded, size: 40.0, color: Color.fromARGB(255, 124, 140, 153),),
+        backgroundColor: const Color.fromARGB(223, 248, 249, 250),
+        child: const Icon(
+          Icons.add_rounded,
+          size: 40.0,
+          color: Color.fromARGB(255, 124, 140, 153),
+        ),
       ),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(223, 230, 237, 245),
         title: const Center(
           child: Text(
             'Porjet flutter !!',
-            style: TextStyle(
-              color: Color.fromARGB(255, 0, 0, 0),
-              fontSize: 28
-            ),
+            style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 28),
           ),
         ),
       ),
-      
       backgroundColor: const Color.fromARGB(223, 223, 230, 237),
       body: SingleChildScrollView(
         child: Column(
-          children: 
-          List.generate(
-            feuilleContactList.length,
+          children: List.generate(
+            _contactList.length,
             (index) => Block(
-                name: (feuilleContactList[index].firstName ?? "Non renseigné") +
+                name: (_contactList[index].firstName ?? "Non renseigné") +
                     ' ' +
-                    (feuilleContactList[index].lastName ?? "Non renseigné"),
-                phoneNumber: feuilleContactList[index].personalPhoneNumber ??
-                    "Non renseigné",
-                mail: feuilleContactList[index].mail ?? "Non renseigné"),
+                    (_contactList[index].lastName ?? "Non renseigné"),
+                phoneNumber:
+                    _contactList[index].personalPhoneNumber ?? "Non renseigné",
+                mail: _contactList[index].mail ?? "Non renseigné"),
           ),
         ),
       ),
@@ -89,11 +79,8 @@ class Block extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          name, 
-                          style: const TextStyle(
-                            height: 1,
-                            fontSize: 25
-                          ),
+                          name,
+                          style: const TextStyle(height: 1, fontSize: 25),
                         ),
                         Row(
                           children: [
@@ -101,11 +88,10 @@ class Block extends StatelessWidget {
                             Text(
                               '  ' + phoneNumber,
                               style: const TextStyle(
-                                color: Color.fromARGB(255, 75, 75, 75),
-                                fontWeight: FontWeight.bold,
-                                height: 1.5, 
-                                fontSize: 16
-                              ),
+                                  color: Color.fromARGB(255, 75, 75, 75),
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.5,
+                                  fontSize: 16),
                             ),
                           ],
                         ),
@@ -115,11 +101,10 @@ class Block extends StatelessWidget {
                             Text(
                               '  ' + mail,
                               style: const TextStyle(
-                                color: Color.fromARGB(255, 75, 75, 75),
-                                fontWeight: FontWeight.bold,
-                                height: 1.5,
-                                fontSize: 16
-                              ),
+                                  color: Color.fromARGB(255, 75, 75, 75),
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.5,
+                                  fontSize: 16),
                             ),
                           ],
                         ),
@@ -131,11 +116,8 @@ class Block extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       TextButton(
-                        child: const Icon(
-                          Icons.more_horiz_outlined,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          size: 36.0
-                        ),
+                        child: const Icon(Icons.more_horiz_outlined,
+                            color: Color.fromARGB(255, 0, 0, 0), size: 36.0),
                         onPressed: () {},
                       ),
                       const SizedBox(width: 8),
