@@ -27,11 +27,28 @@ class ContactDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(223, 230, 237, 245),
-        title: const Text(
-          'Prénom Nom',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Prénom Nom',
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+            TextButton(
+              onPressed: () {
+                formValidator(_formKey, index, info, _contactList, context);
+              },
+              child: const Icon(
+                Icons.check_circle_outlined,
+                color: Color.fromARGB(223, 89, 191, 185),
+                size: 40,
+              ),
+            )
+          ],
         ),
       ),
+      backgroundColor: const Color.fromARGB(223, 223, 230, 237),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8.0),
         child: Center(
@@ -44,7 +61,7 @@ class ContactDetail extends StatelessWidget {
                   width: double.infinity,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: information(
+                    child: Information(
                         contact: index != null
                             ? _contactList[index!]
                             : FeuilleContact(),
@@ -56,37 +73,13 @@ class ContactDetail extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Coordones(
+                      contact: index != null
+                          ? _contactList[index!]
+                          : FeuilleContact(),
                       info: info,
                     ),
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      if (index != null) {
-                        _contactList[index!].lastName = "lastName";
-                      } else {
-                        FeuilleContact newContact = FeuilleContact(
-                            lastName: info["lastName"],
-                            firstName: info["firstName"],
-                            socity: info["socity"],
-                            job: info["lastName"],
-                            personalPhoneNumber: info["personalPhoneNumber"],
-                            proPhoneNumber: info["proPhoneNumber"],
-                            fixPhoneNumber: info["fixPhoneNumber"],
-                            mail: info["mail"]);
-                        DataSource.feuilleContactList.add(newContact);
-                      }
-                      Get.toNamed("/contact");
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-                    }
-                  },
-                  child: const Text('Submit'),
-                )
               ],
             ),
           ),
@@ -96,10 +89,10 @@ class ContactDetail extends StatelessWidget {
   }
 }
 
-class information extends StatelessWidget {
+class Information extends StatelessWidget {
   FeuilleContact? contact;
   dynamic info;
-  information({Key? key, this.contact, required this.info}) : super(key: key);
+  Information({Key? key, this.contact, required this.info}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -117,104 +110,35 @@ class information extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      initialValue: contact?.firstName ?? '',
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Nom',
-                        hintStyle: TextStyle(fontSize: 15),
-                      ),
-                      style: const TextStyle(
-                        fontSize: 10.0,
-                        height: 1.0,
-                        color: Colors.black,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                      },
-                      onChanged: (value) {
-                        info["firstName"] = value;
-                      },
-                    ),
-                  ),
+                SplitTextFormField(
+                  hint: "Nom",
+                  isValidator: true,
+                  info: info,
+                  infoIndex: "firstName",
+                  initialValue: contact?.firstName ?? '',
                 ),
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Prénom',
-                        hintStyle: TextStyle(fontSize: 15),
-                      ),
-                      style: const TextStyle(
-                        fontSize: 10.0,
-                        height: 1.0,
-                        color: Colors.black,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                      },
-                      onChanged: (value) {
-                        info["lastName"] = value;
-                      },
-                    ),
-                  ),
+                SplitTextFormField(
+                  hint: "Prénom",
+                  isValidator: true,
+                  info: info,
+                  infoIndex: "lastName",
+                  initialValue: contact?.lastName ?? '',
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Société',
-                  hintStyle: TextStyle(fontSize: 15),
-                ),
-                style: const TextStyle(
-                  fontSize: 10.0,
-                  height: 1.0,
-                  color: Colors.black,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                },
-                onChanged: (value) {
-                  info["socity"] = value;
-                },
-              ),
+            FullTextFormField(
+              hint: "Société",
+              isValidator: false,
+              info: info,
+              infoIndex: "socity",
+              initialValue: contact?.socity ?? '',
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Poste',
-                  hintStyle: TextStyle(fontSize: 15),
-                ),
-                style: const TextStyle(
-                  fontSize: 10.0,
-                  height: 1.0,
-                  color: Colors.black,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                },
-                onChanged: (value) {
-                  info["job"] = value;
-                },
-              ),
+            FullTextFormField(
+              hint: "Poste",
+              isValidator: false,
+              info: info,
+              infoIndex: "job",
+              initialValue: contact?.job ?? '',
             ),
           ],
         ),
@@ -226,7 +150,7 @@ class information extends StatelessWidget {
 class Coordones extends StatelessWidget {
   FeuilleContact? contact;
   dynamic info;
-  Coordones({Key? key, required this.info}) : super(key: key);
+  Coordones({Key? key, this.contact, required this.info}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -236,109 +160,193 @@ class Coordones extends StatelessWidget {
       child: Column(
         children: [
           const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Information",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Téléphone',
-                hintStyle: TextStyle(fontSize: 15),
-                prefixIcon: Icon(Icons.done),
-              ),
-              style: const TextStyle(
-                fontSize: 10.0,
-                height: 1.0,
-                color: Colors.black,
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-              },
-              onChanged: (value) {
-                info["personalPhoneNumber"] = value;
-              },
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Information",
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Téléphone portable',
-                hintStyle: TextStyle(fontSize: 15),
-                prefixIcon: Icon(Icons.done),
-              ),
-              style: const TextStyle(
-                fontSize: 10.0,
-                height: 1.0,
-                color: Colors.black,
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-              },
-              onChanged: (value) {
-                info["proPhoneNumber"] = value;
-              },
-            ),
+          FullTextFormField(
+            hint: "Téléphone",
+            iconField: const Icon(Icons.smartphone_outlined),
+            isValidator: true,
+            info: info,
+            infoIndex: "personalPhoneNumber",
+            initialValue: contact?.personalPhoneNumber ?? '',
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Téléphone fixe',
-                hintStyle: TextStyle(fontSize: 15),
-                prefixIcon: Icon(Icons.done),
-              ),
-              style: const TextStyle(
-                fontSize: 10.0,
-                height: 1.0,
-                color: Colors.black,
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-              },
-              onChanged: (value) {
-                info["fixPhoneNumber"] = value;
-              },
-            ),
+          FullTextFormField(
+            hint: "Téléphone portable pro",
+            iconField: const Icon(Icons.phone),
+            isValidator: false,
+            info: info,
+            infoIndex: "proPhoneNumber",
+            initialValue: contact?.proPhoneNumber ?? '',
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'E-mail',
-                hintStyle: TextStyle(fontSize: 15),
-                prefixIcon: Icon(Icons.done),
-              ),
-              style: const TextStyle(
-                fontSize: 10.0,
-                height: 1.0,
-                color: Colors.black,
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-              },
-              onChanged: (value) {
-                info["mail"] = value;
-              },
-            ),
+          FullTextFormField(
+            hint: "Téléphone fixe",
+            iconField: const Icon(Icons.phone),
+            isValidator: false,
+            info: info,
+            infoIndex: "fixPhoneNumber",
+            initialValue: contact?.fixPhoneNumber ?? '',
+          ),
+          FullTextFormField(
+            hint: "E-mail",
+            iconField: const Icon(Icons.email_outlined),
+            isValidator: true,
+            info: info,
+            infoIndex: "mail",
+            initialValue: contact?.mail ?? '',
           ),
         ],
       ),
     ));
+  }
+}
+
+class FullTextFormField extends StatelessWidget {
+  String hint, initialValue, infoIndex;
+  dynamic info;
+  Icon? iconField;
+  bool isValidator;
+  FullTextFormField(
+      {Key? key,
+      required this.hint,
+      this.iconField,
+      required this.isValidator,
+      required this.info,
+      required this.infoIndex,
+      required this.initialValue})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        initialValue: initialValue,
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          hintText: hint,
+          hintStyle: const TextStyle(fontSize: 15),
+          prefixIcon: iconField,
+        ),
+        style: const TextStyle(
+          fontSize: 15.0,
+          height: 1.0,
+          color: Colors.black,
+        ),
+        validator: (value) {
+          if (isValidator && (value == null || value.isEmpty)) {
+            return 'Please enter some text';
+          }
+        },
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            info[infoIndex] = value;
+          }
+        },
+      ),
+    );
+  }
+}
+
+class SplitTextFormField extends StatelessWidget {
+  String hint, initialValue, infoIndex;
+  dynamic info;
+  Icon? iconField;
+  bool isValidator;
+  SplitTextFormField(
+      {Key? key,
+      required this.hint,
+      this.iconField,
+      required this.isValidator,
+      required this.info,
+      required this.infoIndex,
+      required this.initialValue})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextFormField(
+          initialValue: initialValue,
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: hint,
+            hintStyle: const TextStyle(fontSize: 15),
+            prefixIcon: iconField,
+          ),
+          style: const TextStyle(
+            fontSize: 15.0,
+            height: 1.0,
+            color: Colors.black,
+          ),
+          validator: (value) {
+            if (isValidator && (value == null || value.isEmpty)) {
+              return 'Please enter some text';
+            }
+          },
+          onChanged: (value) {
+            if (value.isNotEmpty) {
+              info[infoIndex] = value;
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
+
+formValidator(formKey, index, info, contactList, context) {
+  if (formKey.currentState!.validate()) {
+    formKey.currentState!.save();
+    if (index != null) {
+      info["lastName"].toString().isNotEmpty
+          ? contactList[index!].lastName = info["lastName"]
+          : '';
+      info["firstName"].toString().isNotEmpty
+          ? contactList[index!].firstName = info["firstName"]
+          : '';
+      info["socity"].toString().isNotEmpty
+          ? contactList[index!].socity = info["socity"]
+          : '';
+      info["job"].toString().isNotEmpty
+          ? contactList[index!].job = info["job"]
+          : '';
+      info["personalPhoneNumber"].toString().isNotEmpty
+          ? contactList[index!].personalPhoneNumber =
+              info["personalPhoneNumber"]
+          : '';
+      info["proPhoneNumber"].toString().isNotEmpty
+          ? contactList[index!].proPhoneNumber = info["proPhoneNumber"]
+          : '';
+      info["fixPhoneNumber"].toString().isNotEmpty
+          ? contactList[index!].fixPhoneNumber = info["fixPhoneNumber"]
+          : '';
+      info["mail"].toString().isNotEmpty
+          ? contactList[index!].mail = info["mail"]
+          : '';
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('contact modifié')),
+      );
+    } else {
+      FeuilleContact newContact = FeuilleContact(
+          lastName: info["lastName"],
+          firstName: info["firstName"],
+          socity: info["socity"],
+          job: info["job"],
+          personalPhoneNumber: info["personalPhoneNumber"],
+          proPhoneNumber: info["proPhoneNumber"],
+          fixPhoneNumber: info["fixPhoneNumber"],
+          mail: info["mail"]);
+      DataSource.feuilleContactList.add(newContact);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('contact ajouté')),
+      );
+    }
+    Get.toNamed("/contact");
   }
 }
