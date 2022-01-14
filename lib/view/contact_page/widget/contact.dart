@@ -49,25 +49,26 @@ class contact extends StatelessWidget {
       FeuilleContact(
           name: "Jean-Paul Larue",
           phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
           mail: "jp.larue@laposte.net")
     ];
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        feuilleContactList.add(
-            FeuilleContact(name: "Ajouté", phoneNumber: "XX1", mail: "x@f.x"));
-      }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          feuilleContactList.add(
+            FeuilleContact(name: "Ajouté", phoneNumber: "XX1", mail: "x@f.x")
+          );
+        },
+        backgroundColor: const Color.fromARGB(255, 195, 207, 217),
+        child: const Icon(Icons.add_rounded, size: 40.0, color: Color.fromARGB(255, 124, 140, 153),),
+      ),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(223, 230, 237, 245),
         title: const Center(
           child: Text(
             'Porjet flutter !!',
             style: TextStyle(
-              color: Colors.blue,
+              color: Color.fromARGB(255, 0, 0, 0),
               fontSize: 28
             ),
           ),
@@ -112,7 +113,6 @@ class Block extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
@@ -122,27 +122,35 @@ class Block extends StatelessWidget {
                       children: [
                         Text(
                           name, 
-                          style: const TextStyle( 
-                            color: Colors.blue, 
+                          style: const TextStyle(
                             height: 1,
                             fontSize: 25
                           ),
                         ),
                         Row(
                           children: [
-                            const Icon(Icons.more_vert),
+                            const Icon(Icons.local_phone_rounded),
                             Text(
-                              '\u{1F4DE}  ' + phoneNumber,
-                              style: const TextStyle(height: 1.5, fontSize: 16),
+                              '  ' + phoneNumber,
+                              style: const TextStyle(
+                                color: Color.fromARGB(255, 75, 75, 75),
+                                fontWeight: FontWeight.bold,
+                                height: 1.5, 
+                                fontSize: 16
+                              ),
                             ),
                           ],
                         ),
                         Row(
                           children: [
-                            const Icon(Icons.more_vert),
+                            const Icon(Icons.mail_rounded),
                             Text(
-                              '\u{2709}  ' + mail,
-                              style: const TextStyle(height: 1.5, fontSize: 16),
+                              '  ' + mail,
+                              style: const TextStyle(
+                                  color: Color.fromARGB(255, 75, 75, 75),
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.5,
+                                  fontSize: 16),
                             ),
                           ],
                         ),
@@ -157,7 +165,7 @@ class Block extends StatelessWidget {
                       TextButton(
                         child: const Icon(
                           Icons.more_horiz_outlined,
-                          color: Colors.blue,
+                          color: Color.fromARGB(255, 0, 0, 0),
                           size: 36.0
                         ),
                         onPressed: () {},
