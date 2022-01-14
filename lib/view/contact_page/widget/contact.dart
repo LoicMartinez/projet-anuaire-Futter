@@ -106,10 +106,23 @@ class Block extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [Text(name), Text(phoneNumber), Text(mail)],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ListTile(
+                          title: Text(name),
+                        ),
+                        ListTile(
+                          subtitle: Text('\u{1F4DE} ' + phoneNumber),
+                        ),
+                         ListTile(
+                          subtitle : Text('\u{2709} ' + mail),
+                        )
+                      ],
+                    ),
                   ),
+                  
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
@@ -117,7 +130,7 @@ class Block extends StatelessWidget {
                         child: const Icon(
                           Icons.dehaze_rounded,
                           color: Colors.blue,
-                          size: 36.0,
+                          size: 36.0
                         ),
                         onPressed: () {},
                       ),
