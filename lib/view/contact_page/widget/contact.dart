@@ -1,62 +1,26 @@
 import 'package:projetflutter/models/class_contact.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp(const contact(
+  runApp(contact(
     feuilleContactList: [],
   ));
 }
 
-// ignore: camel_case_types
+// ignore: camel_case_types, must_be_immutable
 class contact extends StatelessWidget {
-  final List<FeuilleContact> feuilleContactList;
+  List<FeuilleContact> feuilleContactList;
 
-  const contact({Key? key, required this.feuilleContactList}) : super(key: key);
+  contact({Key? key, required this.feuilleContactList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<FeuilleContact> feuilleContactList = <FeuilleContact>[
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net")
-    ];
-
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           feuilleContactList.add(
-            FeuilleContact(name: "Ajouté", phoneNumber: "XX1", mail: "x@f.x")
+            FeuilleContact(lastName: "Ajouté", personalPhoneNumber: "XX1", mail: "x@f.x")
           );
         },
         backgroundColor: const Color.fromARGB(255, 195, 207, 217),
@@ -74,15 +38,19 @@ class contact extends StatelessWidget {
           ),
         ),
       ),
+      
+      backgroundColor: const Color.fromARGB(223, 223, 230, 237),
       body: SingleChildScrollView(
         child: Column(
           children: 
           List.generate(
             feuilleContactList.length,
             (index) => Block(
-                name: feuilleContactList[index].name ?? "Non renseigné",
-                phoneNumber:
-                    feuilleContactList[index].phoneNumber ?? "Non renseigné",
+                name: (feuilleContactList[index].firstName ?? "Non renseigné") +
+                    ' ' +
+                    (feuilleContactList[index].lastName ?? "Non renseigné"),
+                phoneNumber: feuilleContactList[index].personalPhoneNumber ??
+                    "Non renseigné",
                 mail: feuilleContactList[index].mail ?? "Non renseigné"),
           ),
         ),
@@ -147,17 +115,17 @@ class Block extends StatelessWidget {
                             Text(
                               '  ' + mail,
                               style: const TextStyle(
-                                  color: Color.fromARGB(255, 75, 75, 75),
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.5,
-                                  fontSize: 16),
+                                color: Color.fromARGB(255, 75, 75, 75),
+                                fontWeight: FontWeight.bold,
+                                height: 1.5,
+                                fontSize: 16
+                              ),
                             ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.end,
