@@ -1,17 +1,21 @@
 class FeuilleContact {
-  String? name, phoneNumber, mail;
+  String? lastName,
+      firstName,
+      socity,
+      job,
+      personalPhoneNumber,
+      proPhoneNumber,
+      fixPhoneNumber,
+      mail;
 
-  FeuilleContact({this.name, this.phoneNumber, this.mail});
-
-  setName(String name) {
-    this.name = name;
-  }
-
-  setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
-  setmail(String mail) {
-    this.mail = mail;
-  }
+  FeuilleContact({
+    this.lastName,
+    this.firstName,
+    this.socity,
+    this.job,
+    this.personalPhoneNumber,
+    this.proPhoneNumber,
+    this.fixPhoneNumber,
+    this.mail,
+  });
 }

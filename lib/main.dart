@@ -15,40 +15,49 @@ class MyApp extends StatelessWidget {
 
   final List<FeuilleContact> feuilleContactList = <FeuilleContact>[
     FeuilleContact(
-        name: "Jean-Paul Larue",
-        phoneNumber: "06 71 59 57 60",
+        firstName: "Jean-Paul",
+        lastName: "Larue",
+        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net"),
     FeuilleContact(
-        name: "Jean-Paul Larue",
-        phoneNumber: "06 71 59 57 60",
+        firstName: "Jean-Paul",
+        lastName: "Larue",
+        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net"),
     FeuilleContact(
-        name: "Jean-Paul Larue",
-        phoneNumber: "06 71 59 57 60",
+        firstName: "Jean-Paul",
+        lastName: "Larue",
+        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net"),
     FeuilleContact(
-        name: "Jean-Paul Larue",
-        phoneNumber: "06 71 59 57 60",
+        firstName: "Jean-Paul",
+        lastName: "Larue",
+        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net"),
     FeuilleContact(
-        name: "Jean-Paul Larue",
-        phoneNumber: "06 71 59 57 60",
+        firstName: "Jean-Paul",
+        lastName: "Larue",
+        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net"),
     FeuilleContact(
-        name: "Jean-Paul Larue",
-        phoneNumber: "06 71 59 57 60",
+        firstName: "Jean-Paul",
+        lastName: "Larue",
+        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net"),
     FeuilleContact(
-        name: "Jean-Paul Larue",
-        phoneNumber: "06 71 59 57 60",
+        firstName: "Jean-Paul",
+        lastName: "Larue",
+        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net"),
     FeuilleContact(
-        name: "Jean-Paul Larue",
-        phoneNumber: "06 71 59 57 60",
+        firstName: "Jean-Paul",
+        lastName: "Larue",
+        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net"),
     FeuilleContact(
-        name: "Jean-Paul Larue",
-        phoneNumber: "06 71 59 57 60",
+        firstName: "Jean-Paul",
+        lastName: "Larue",
+        personalPhoneNumber: "06 71 59 57 60",
         mail: "jp.larue@laposte.net")
   ];
 

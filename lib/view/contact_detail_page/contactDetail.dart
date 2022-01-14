@@ -9,7 +9,16 @@ class ContactDetail extends StatelessWidget {
       : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
-  dynamic info = {"firstName": '', "phoneNumber": '', "mail": ''}.obs;
+  dynamic info = {
+    "lastName": '',
+    "firstName": '',
+    "socity": '',
+    "job": '',
+    "personalPhoneNumber": '',
+    "proPhoneNumber": '',
+    "fixPhoneNumber": '',
+    "mail": ''
+  }.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -53,16 +62,20 @@ class ContactDetail extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    print(info["firstName"]);
-                    print(info["phoneNumber"]);
-                    print(info["mail"]);
-
                     if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
                       if (index != null) {
-                        contactList[index!].setName("test");
+                        contactList[index!].lastName = "lastName";
                       } else {
-                        FeuilleContact newContact =
-                            FeuilleContact(name: "name");
+                        FeuilleContact newContact = FeuilleContact(
+                            lastName: info["lastName"],
+                            firstName: info["firstName"],
+                            socity: info["socity"],
+                            job: info["lastName"],
+                            personalPhoneNumber: info["personalPhoneNumber"],
+                            proPhoneNumber: info["proPhoneNumber"],
+                            fixPhoneNumber: info["fixPhoneNumber"],
+                            mail: info["mail"]);
                         contactList.add(newContact);
                       }
                       Get.toNamed("/contact", arguments: contactList);
@@ -108,7 +121,7 @@ class information extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      initialValue: contact?.name ?? '',
+                      initialValue: contact?.firstName ?? '',
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Nom',
@@ -134,21 +147,25 @@ class information extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Prénom',
-                          hintStyle: TextStyle(fontSize: 15),
-                        ),
-                        style: const TextStyle(
-                          fontSize: 10.0,
-                          height: 1.0,
-                          color: Colors.black,
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                        }),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Prénom',
+                        hintStyle: TextStyle(fontSize: 15),
+                      ),
+                      style: const TextStyle(
+                        fontSize: 10.0,
+                        height: 1.0,
+                        color: Colors.black,
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                      },
+                      onChanged: (value) {
+                        info["lastName"] = value;
+                      },
+                    ),
                   ),
                 ),
               ],
@@ -156,40 +173,48 @@ class information extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Société',
-                    hintStyle: TextStyle(fontSize: 15),
-                  ),
-                  style: const TextStyle(
-                    fontSize: 10.0,
-                    height: 1.0,
-                    color: Colors.black,
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                  }),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Société',
+                  hintStyle: TextStyle(fontSize: 15),
+                ),
+                style: const TextStyle(
+                  fontSize: 10.0,
+                  height: 1.0,
+                  color: Colors.black,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                },
+                onChanged: (value) {
+                  info["socity"] = value;
+                },
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Poste',
-                    hintStyle: TextStyle(fontSize: 15),
-                  ),
-                  style: const TextStyle(
-                    fontSize: 10.0,
-                    height: 1.0,
-                    color: Colors.black,
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                  }),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Poste',
+                  hintStyle: TextStyle(fontSize: 15),
+                ),
+                style: const TextStyle(
+                  fontSize: 10.0,
+                  height: 1.0,
+                  color: Colors.black,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                },
+                onChanged: (value) {
+                  info["job"] = value;
+                },
+              ),
             ),
           ],
         ),
@@ -236,49 +261,57 @@ class Coordones extends StatelessWidget {
                 }
               },
               onChanged: (value) {
-                info["phoneNumber"] = value;
+                info["personalPhoneNumber"] = value;
               },
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Téléphone portable',
-                  hintStyle: TextStyle(fontSize: 15),
-                  prefixIcon: Icon(Icons.done),
-                ),
-                style: const TextStyle(
-                  fontSize: 10.0,
-                  height: 1.0,
-                  color: Colors.black,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                }),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Téléphone portable',
+                hintStyle: TextStyle(fontSize: 15),
+                prefixIcon: Icon(Icons.done),
+              ),
+              style: const TextStyle(
+                fontSize: 10.0,
+                height: 1.0,
+                color: Colors.black,
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+              },
+              onChanged: (value) {
+                info["proPhoneNumber"] = value;
+              },
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Téléphone fixe',
-                  hintStyle: TextStyle(fontSize: 15),
-                  prefixIcon: Icon(Icons.done),
-                ),
-                style: const TextStyle(
-                  fontSize: 10.0,
-                  height: 1.0,
-                  color: Colors.black,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                }),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Téléphone fixe',
+                hintStyle: TextStyle(fontSize: 15),
+                prefixIcon: Icon(Icons.done),
+              ),
+              style: const TextStyle(
+                fontSize: 10.0,
+                height: 1.0,
+                color: Colors.black,
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+              },
+              onChanged: (value) {
+                info["fixPhoneNumber"] = value;
+              },
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

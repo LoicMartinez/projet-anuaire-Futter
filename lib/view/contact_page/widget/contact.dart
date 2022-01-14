@@ -33,9 +33,11 @@ class contact extends StatelessWidget {
           children: List.generate(
             feuilleContactList.length,
             (index) => Block(
-                name: feuilleContactList[index].name ?? "Non renseigné",
-                phoneNumber:
-                    feuilleContactList[index].phoneNumber ?? "Non renseigné",
+                name: (feuilleContactList[index].firstName ?? "Non renseigné") +
+                    ' ' +
+                    (feuilleContactList[index].lastName ?? "Non renseigné"),
+                phoneNumber: feuilleContactList[index].personalPhoneNumber ??
+                    "Non renseigné",
                 mail: feuilleContactList[index].mail ?? "Non renseigné"),
           ),
         ),
@@ -80,22 +82,18 @@ class Block extends StatelessWidget {
                         ListTile(
                           subtitle: Text('\u{1F4DE} ' + phoneNumber),
                         ),
-                         ListTile(
-                          subtitle : Text('\u{2709} ' + mail),
+                        ListTile(
+                          subtitle: Text('\u{2709} ' + mail),
                         )
                       ],
                     ),
                   ),
-                  
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       TextButton(
-                        child: const Icon(
-                          Icons.dehaze_rounded,
-                          color: Colors.blue,
-                          size: 36.0
-                        ),
+                        child: const Icon(Icons.dehaze_rounded,
+                            color: Colors.blue, size: 36.0),
                         onPressed: () {},
                       ),
                       const SizedBox(width: 8),
