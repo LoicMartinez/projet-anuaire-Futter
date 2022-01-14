@@ -1,5 +1,6 @@
 import 'package:projetflutter/models/class_contact.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -61,13 +62,21 @@ class contact extends StatelessWidget {
             FeuilleContact(name: "Ajouté", phoneNumber: "XX1", mail: "x@f.x"));
       }),
       appBar: AppBar(
-          backgroundColor: const Color.fromARGB(223, 230, 237, 245),
-          title: const Text('Porjet flutter !!',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
+        backgroundColor: const Color.fromARGB(223, 230, 237, 245),
+        title: const Center(
+          child: Text(
+            'Porjet flutter !!',
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: 28
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
-          children: List.generate(
+          children: 
+          List.generate(
             feuilleContactList.length,
             (index) => Block(
                 name: feuilleContactList[index].name ?? "Non renseigné",
@@ -111,25 +120,43 @@ class Block extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ListTile(
-                          title: Text(name),
+                        Text(
+                          name, 
+                          style: const TextStyle( 
+                            color: Colors.blue, 
+                            height: 1,
+                            fontSize: 25
+                          ),
                         ),
-                        ListTile(
-                          subtitle: Text('\u{1F4DE} ' + phoneNumber),
+                        Row(
+                          children: [
+                            const Icon(Icons.more_vert),
+                            Text(
+                              '\u{1F4DE}  ' + phoneNumber,
+                              style: const TextStyle(height: 1.5, fontSize: 16),
+                            ),
+                          ],
                         ),
-                         ListTile(
-                          subtitle : Text('\u{2709} ' + mail),
-                        )
+                        Row(
+                          children: [
+                            const Icon(Icons.more_vert),
+                            Text(
+                              '\u{2709}  ' + mail,
+                              style: const TextStyle(height: 1.5, fontSize: 16),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
                   
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       TextButton(
                         child: const Icon(
-                          Icons.dehaze_rounded,
+                          Icons.more_horiz_outlined,
                           color: Colors.blue,
                           size: 36.0
                         ),
