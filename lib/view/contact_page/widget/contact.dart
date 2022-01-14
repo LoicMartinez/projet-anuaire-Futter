@@ -3,62 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp(const contact(
+  runApp(contact(
     feuilleContactList: [],
   ));
 }
 
 // ignore: camel_case_types
 class contact extends StatelessWidget {
-  final List<FeuilleContact> feuilleContactList;
+  List<FeuilleContact> feuilleContactList;
 
-  const contact({Key? key, required this.feuilleContactList}) : super(key: key);
+  contact({Key? key, required this.feuilleContactList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<FeuilleContact> feuilleContactList = <FeuilleContact>[
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net"),
-      FeuilleContact(
-          name: "Jean-Paul Larue",
-          phoneNumber: "06 71 59 57 60",
-          mail: "jp.larue@laposte.net")
-    ];
-
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: () {
-        feuilleContactList.add(
-            FeuilleContact(name: "Ajouté", phoneNumber: "XX1", mail: "x@f.x"));
+        Get.toNamed("/contact_detail", arguments: {
+          'feuilleContactList': feuilleContactList,
+          'index': null
+        });
       }),
       appBar: AppBar(
           backgroundColor: const Color.fromARGB(223, 230, 237, 245),

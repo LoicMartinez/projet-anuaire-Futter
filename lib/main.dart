@@ -7,27 +7,66 @@ import 'view/contact_detail_page/contactDetail.dart';
 import 'view/contact_page/widget/contact.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final List<FeuilleContact> feuilleContactList = <FeuilleContact>[
+    FeuilleContact(
+        name: "Jean-Paul Larue",
+        phoneNumber: "06 71 59 57 60",
+        mail: "jp.larue@laposte.net"),
+    FeuilleContact(
+        name: "Jean-Paul Larue",
+        phoneNumber: "06 71 59 57 60",
+        mail: "jp.larue@laposte.net"),
+    FeuilleContact(
+        name: "Jean-Paul Larue",
+        phoneNumber: "06 71 59 57 60",
+        mail: "jp.larue@laposte.net"),
+    FeuilleContact(
+        name: "Jean-Paul Larue",
+        phoneNumber: "06 71 59 57 60",
+        mail: "jp.larue@laposte.net"),
+    FeuilleContact(
+        name: "Jean-Paul Larue",
+        phoneNumber: "06 71 59 57 60",
+        mail: "jp.larue@laposte.net"),
+    FeuilleContact(
+        name: "Jean-Paul Larue",
+        phoneNumber: "06 71 59 57 60",
+        mail: "jp.larue@laposte.net"),
+    FeuilleContact(
+        name: "Jean-Paul Larue",
+        phoneNumber: "06 71 59 57 60",
+        mail: "jp.larue@laposte.net"),
+    FeuilleContact(
+        name: "Jean-Paul Larue",
+        phoneNumber: "06 71 59 57 60",
+        mail: "jp.larue@laposte.net"),
+    FeuilleContact(
+        name: "Jean-Paul Larue",
+        phoneNumber: "06 71 59 57 60",
+        mail: "jp.larue@laposte.net")
+  ];
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: "/contact_detail",
+      initialRoute: "/contact",
       getPages: [
         GetPage(
-            name: "/contact",
-            page: () => const contact(
-                  feuilleContactList: [],
-                )),
+          name: "/contact",
+          page: () => contact(
+            feuilleContactList: feuilleContactList,
+          ),
+        ),
         GetPage(
-            name: "/contact_detail",
-            page: () => ContactDetail(
-                  contactList: [],
-                ))
+          name: "/contact_detail",
+          page: () => ContactDetail(contactList: []),
+        ),
       ],
     );
   }
