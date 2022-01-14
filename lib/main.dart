@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: "/contact",
+      initialRoute: "/contact_detail",
       getPages: [
         GetPage(
             name: "/contact",
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
                 )),
         GetPage(
             name: "/contact_detail",
-            page: () => contactDetail(
+            page: () => ContactDetail(
                   contactList: [],
                 ))
       ],

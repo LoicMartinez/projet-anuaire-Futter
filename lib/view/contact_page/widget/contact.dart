@@ -70,9 +70,10 @@ class contact extends StatelessWidget {
           children: List.generate(
             feuilleContactList.length,
             (index) => Block(
-                name: feuilleContactList[index].name,
-                phoneNumber: feuilleContactList[index].phoneNumber,
-                mail: feuilleContactList[index].mail),
+                name: feuilleContactList[index].name ?? "Non renseigné",
+                phoneNumber:
+                    feuilleContactList[index].phoneNumber ?? "Non renseigné",
+                mail: feuilleContactList[index].mail ?? "Non renseigné"),
           ),
         ),
       ),

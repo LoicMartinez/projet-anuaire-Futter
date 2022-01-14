@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projetflutter/models/class_contact.dart';
 
-void main() {
-  runApp(contactDetail(
-    contactList: [],
-  ));
-}
-
-class contactDetail extends StatelessWidget {
-  List<FeuilleContact>? contactList;
+class ContactDetail extends StatelessWidget {
+  List<FeuilleContact> contactList;
   int? index;
-  contactDetail({Key? key, this.contactList, this.index})
+  ContactDetail({Key? key, required this.contactList, this.index})
       : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
@@ -35,10 +29,11 @@ class contactDetail extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: information(
-                      contact: "salut"
-                    ),
+                        contact: index != null
+                            ? contactList[index!]
+                            : FeuilleContact()),
                   ),
                 ),
                 const SizedBox(
@@ -51,6 +46,14 @@ class contactDetail extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      if (index != null) {
+                        contactList[index!].setName("test");
+                      } else {
+                        FeuilleContact newContact =
+                            FeuilleContact(name: "name");
+                        contactList.add(newContact);
+                      }
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
                       );
@@ -68,7 +71,7 @@ class contactDetail extends StatelessWidget {
 }
 
 class information extends StatelessWidget {
-  String? contact;
+  FeuilleContact? contact;
   information({Key? key, this.contact}) : super(key: key);
 
   @override
@@ -91,7 +94,7 @@ class information extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      initialValue: (contact) ?? '',
+                      initialValue: contact?.name ?? '',
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Nom',
