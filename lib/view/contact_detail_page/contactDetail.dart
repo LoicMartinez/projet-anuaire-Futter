@@ -37,7 +37,7 @@ class contactDetail extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
                     child: information(
-                      contact: (contactList?[0].name??),
+                      contact: "salut"
                     ),
                   ),
                 ),
@@ -68,7 +68,7 @@ class contactDetail extends StatelessWidget {
 }
 
 class information extends StatelessWidget {
-  List<FeuilleContact>? contact;
+  String? contact;
   information({Key? key, this.contact}) : super(key: key);
 
   @override
@@ -91,7 +91,7 @@ class information extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      initialValue: (contact?[0].name) ?? '',
+                      initialValue: (contact) ?? '',
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Nom',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:projetflutter/models/class_contact.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: "/contact_detail",
+      initialRoute: "/contact",
       getPages: [
         GetPage(
             name: "/contact",
